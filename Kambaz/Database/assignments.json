@@ -1,0 +1,92 @@
+[
+  { 
+    "_id": "A101", 
+    "title": "Propulsion Assignment", 
+    "course": "RS101",
+    "description": "Description for Propulsion Assignment",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  },
+  { 
+    "_id": "A102", 
+    "title": "Combustion Analysis", 
+    "course": "RS101",
+    "description": "Description for Combustion Analysis",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  },
+  { 
+    "_id": "A103", 
+    "title": "Nozzle Design Project", 
+    "course": "RS101",
+    "description": "Description for Nozzle Design Project",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  },
+  { 
+    "_id": "A201", 
+    "title": "Aerodynamics Quiz", 
+    "course": "RS102",
+    "description": "Description for Aerodynamics Quiz",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  },
+  { 
+    "_id": "A202", 
+    "title": "Flow Analysis", 
+    "course": "RS102",
+    "description": "Description for Flow Analysis",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  },
+  { 
+    "_id": "A203", 
+    "title": "Heating Analysis", 
+    "course": "RS102",
+    "description": "Description for Heating Analysis",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  },
+  { 
+    "_id": "A301", 
+    "title": "Structural Design Task", 
+    "course": "RS103",
+    "description": "Description for Structural Design Task",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  },
+  { 
+    "_id": "A302", 
+    "title": "Orbital Calculations", 
+    "course": "RS103",
+    "description": "Description for Orbital Calculations",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  },
+  { 
+    "_id": "A303", 
+    "title": "Systems Engineering Exam", 
+    "course": "RS103",
+    "description": "Description for Systems Engineering Exam",
+    "points": 100,
+    "dueDate": "2024-05-13",
+    "availableFrom": "2024-05-06",
+    "availableUntil": "2024-05-20"
+  }
+]
