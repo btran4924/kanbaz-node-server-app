@@ -9,26 +9,29 @@ import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import EnrollmentsRoutes from "./Kambaz/Enrollments/routes.js";
 import db from "./Kambaz/Database/index.js";
 import cors from "cors";
+import "dotenv/config";
 
 const app = express();
 
+// CORS must be configured BEFORE session
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000", 
+    origin: process.env.CLIENT_URL || "http://localhost:3000",
   })
 );
 
+// Session configuration
 app.use(
   session({
-    secret: "kambaz",
+    secret: process.env.SESSION_SECRET || "kambaz",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,       
+      secure: process.env.SERVER_ENV !== "development",
       httpOnly: true,
-      sameSite: "lax",      
-      maxAge: 24 * 60 * 60 * 1000
+      sameSite: process.env.SERVER_ENV !== "development" ? "none" : "lax",
+      maxAge: 24 * 60 * 60 * 1000  // 24 hours
     }
   })
 );
@@ -43,4 +46,7 @@ EnrollmentsRoutes(app, db);
 Lab5(app);
 Hello(app);
 
-app.listen(process.env.PORT || 4000);
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server running on ${process.env.SERVER_URL || `http://localhost:${PORT}`}`);
+});
