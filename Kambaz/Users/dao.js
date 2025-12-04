@@ -1,50 +1,44 @@
+import model from "./model.js";
+import { v4 as uuidv4 } from "uuid";
+
 export default function UsersDao(db) {
-  function findAllUsers() {
-    return db.users;
-  }
+  const createUser = (user) => {
+    const newUser = { ...user, _id: uuidv4() };
+    return model.create(newUser);
+  };
 
-  function findUsersForCourse(courseId) {
-    const { users, enrollments } = db;
-    const enrolledUsers = users.filter((user) =>
-      enrollments.some(
-        (enrollment) =>
-          enrollment.user === user._id && enrollment.course === courseId
-      )
-    );
-    return enrolledUsers;
-  }
+  const findAllUsers = () => model.find();
+  
+  const findUserById = (userId) => model.findById(userId);
+  
+  const findUserByUsername = (username) => model.findOne({ username: username });
+  
+  const findUserByCredentials = (username, password) => 
+    model.findOne({ username, password });
+  
+  const updateUser = (userId, user) => 
+    model.updateOne({ _id: userId }, { $set: user });
+  
+  const deleteUser = (userId) => model.findByIdAndDelete(userId);
 
-  function findUserById(userId) {
-    return db.users.find((user) => user._id === userId);
-  }
+  const findUsersByRole = (role) => model.find({ role: role });
 
-  function createUser(user) {
-    const newUser = { ...user, _id: new Date().getTime().toString() };
-    db.users.push(newUser);
-    return newUser;
-  }
-
-  function deleteUser(userId) {
-    const { users, enrollments } = db;
-    db.users = users.filter((user) => user._id !== userId);
-    db.enrollments = enrollments.filter(
-      (enrollment) => enrollment.user !== userId
-    );
-  }
-
-  function updateUser(userId, userUpdates) {
-    const { users } = db;
-    const user = users.find((user) => user._id === userId);
-    Object.assign(user, userUpdates);
-    return user;
-  }
+  const findUsersByPartialName = (partialName) => {
+    const regex = new RegExp(partialName, "i");
+    return model.find({
+      $or: [{ firstName: { $regex: regex } }, { lastName: { $regex: regex } }],
+    });
+  };
 
   return {
-    findAllUsers,
-    findUsersForCourse,
-    findUserById,
     createUser,
-    deleteUser,
+    findAllUsers,
+    findUserById,
+    findUserByUsername,
+    findUserByCredentials,
     updateUser,
+    deleteUser,
+    findUsersByRole,
+    findUsersByPartialName,
   };
 }

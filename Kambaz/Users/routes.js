@@ -3,12 +3,10 @@ import UsersDao from "./dao.js";
 export default function UserRoutes(app, db) {
   const dao = UsersDao(db);
 
-  const signin = (req, res) => {
+  const signin = async (req, res) => {
     const { username, password } = req.body;
     console.log("Signin attempt:", username);
-    const currentUser = db.users.find(
-      (user) => user.username === username && user.password === password
-    );
+    const currentUser = await dao.findUserByCredentials(username, password);
     if (currentUser) {
       req.session["currentUser"] = currentUser;
       console.log("Session after signin:", req.session);
@@ -16,11 +14,11 @@ export default function UserRoutes(app, db) {
       res.json(currentUser);
     } else {
       console.log("Login failed for:", username);
-      res.status(401).json({ message: "Unable to login" });
+      res.status(401).json({ message: "Unable to login. Try again later." });
     }
   };
 
-  const profile = (req, res) => {
+  const profile = async (req, res) => {
     console.log("Profile request - Session:", req.session);
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
@@ -31,17 +29,15 @@ export default function UserRoutes(app, db) {
     res.json(currentUser);
   };
 
-  const signup = (req, res) => {
-    const user = req.body;
-    const existingUser = db.users.find((u) => u.username === user.username);
-    if (existingUser) {
-      res.status(400).json({ message: "Username already exists" });
+  const signup = async (req, res) => {
+    const user = await dao.findUserByUsername(req.body.username);
+    if (user) {
+      res.status(400).json({ message: "Username already taken" });
       return;
     }
-    const newUser = { ...user, _id: new Date().getTime().toString() };
-    db.users.push(newUser);
-    req.session["currentUser"] = newUser;
-    res.json(newUser);
+    const currentUser = await dao.createUser(req.body);
+    req.session["currentUser"] = currentUser;
+    res.json(currentUser);
   };
 
   const signout = (req, res) => {
@@ -49,33 +45,46 @@ export default function UserRoutes(app, db) {
     res.sendStatus(200);
   };
 
-  const findAllUsers = (req, res) => {
-    const users = dao.findAllUsers();
+  const findAllUsers = async (req, res) => {
+    const { role, name } = req.query;
+    if (role) {
+      const users = await dao.findUsersByRole(role);
+      res.json(users);
+      return;
+    }
+    if (name) {
+      const users = await dao.findUsersByPartialName(name);
+      res.json(users);
+      return;
+    }
+    const users = await dao.findAllUsers();
     res.json(users);
   };
 
-  const findUsersForCourse = (req, res) => {
-    const { courseId } = req.params;
-    const users = dao.findUsersForCourse(courseId);
-    res.json(users);
+  const findUserById = async (req, res) => {
+    const user = await dao.findUserById(req.params.userId);
+    res.json(user);
   };
 
-  const createUser = (req, res) => {
-    const newUser = dao.createUser(req.body);
+  const createUser = async (req, res) => {
+    const newUser = await dao.createUser(req.body);
     res.json(newUser);
   };
 
-  const deleteUser = (req, res) => {
-    const { userId } = req.params;
-    dao.deleteUser(userId);
-    res.sendStatus(204);
+  const deleteUser = async (req, res) => {
+    const status = await dao.deleteUser(req.params.userId);
+    res.json(status);
   };
 
-  const updateUser = (req, res) => {
+  const updateUser = async (req, res) => {
     const { userId } = req.params;
     const userUpdates = req.body;
-    const user = dao.updateUser(userId, userUpdates);
-    res.json(user);
+    await dao.updateUser(userId, userUpdates);
+    const currentUser = req.session["currentUser"];
+    if (currentUser && currentUser._id === userId) {
+      req.session["currentUser"] = { ...currentUser, ...userUpdates };
+    }
+    res.json(currentUser);
   };
 
   app.post("/api/users/signin", signin);
@@ -83,7 +92,7 @@ export default function UserRoutes(app, db) {
   app.post("/api/users/signout", signout);
   app.post("/api/users/profile", profile);
   app.get("/api/users", findAllUsers);
-  app.get("/api/courses/:courseId/users", findUsersForCourse);
+  app.get("/api/users/:userId", findUserById);
   app.post("/api/users", createUser);
   app.delete("/api/users/:userId", deleteUser);
   app.put("/api/users/:userId", updateUser);
