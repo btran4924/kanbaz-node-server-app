@@ -28,15 +28,17 @@ const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kambaz",
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000,
+  }
 };
 
 if (process.env.SERVER_ENV !== "development") {
+  app.set("trust proxy", 1);
   sessionOptions.proxy = true;
-  sessionOptions.cookie = {
-    sameSite: "none",
-    secure: true,
-    domain: process.env.SERVER_URL
-  };
+  sessionOptions.cookie.sameSite = "none";
+  sessionOptions.cookie.secure = true;
 }
 
 app.use(session(sessionOptions));
