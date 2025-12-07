@@ -1,0 +1,193 @@
+[
+  {
+    "_id": "attempt-001",
+    "quiz": "quiz-001",
+    "student": "student-123",
+    "attemptNumber": 1,
+    "answers": [
+      {
+        "question": "question-001",
+        "answer": "choice-001-b",
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-002",
+        "answer": false,
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-003",
+        "answer": "function",
+        "isCorrect": true,
+        "pointsEarned": 10
+      }
+    ],
+    "score": 30,
+    "totalPoints": 30,
+    "startedAt": "2024-12-03T14:30:00.000Z",
+    "submittedAt": "2024-12-03T14:45:30.000Z",
+    "timeSpent": 930
+  },
+  {
+    "_id": "attempt-002",
+    "quiz": "quiz-002",
+    "student": "student-123",
+    "attemptNumber": 1,
+    "answers": [
+      {
+        "question": "question-004",
+        "answer": "choice-004-b",
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-005",
+        "answer": true,
+        "isCorrect": false,
+        "pointsEarned": 0
+      },
+      {
+        "question": "question-006",
+        "answer": "choice-006-c",
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-007",
+        "answer": "XML",
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-008",
+        "answer": true,
+        "isCorrect": true,
+        "pointsEarned": 10
+      }
+    ],
+    "score": 40,
+    "totalPoints": 50,
+    "startedAt": "2024-12-04T10:00:00.000Z",
+    "submittedAt": "2024-12-04T10:25:15.000Z",
+    "timeSpent": 1515
+  },
+  {
+    "_id": "attempt-003",
+    "quiz": "quiz-002",
+    "student": "student-123",
+    "attemptNumber": 2,
+    "answers": [
+      {
+        "question": "question-004",
+        "answer": "choice-004-b",
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-005",
+        "answer": false,
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-006",
+        "answer": "choice-006-c",
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-007",
+        "answer": "xml",
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-008",
+        "answer": true,
+        "isCorrect": true,
+        "pointsEarned": 10
+      }
+    ],
+    "score": 50,
+    "totalPoints": 50,
+    "startedAt": "2024-12-04T15:00:00.000Z",
+    "submittedAt": "2024-12-04T15:20:45.000Z",
+    "timeSpent": 1245
+  },
+  {
+    "_id": "attempt-004",
+    "quiz": "quiz-001",
+    "student": "student-456",
+    "attemptNumber": 1,
+    "answers": [
+      {
+        "question": "question-001",
+        "answer": "choice-001-a",
+        "isCorrect": false,
+        "pointsEarned": 0
+      },
+      {
+        "question": "question-002",
+        "answer": false,
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-003",
+        "answer": "func",
+        "isCorrect": false,
+        "pointsEarned": 0
+      }
+    ],
+    "score": 10,
+    "totalPoints": 30,
+    "startedAt": "2024-12-03T16:00:00.000Z",
+    "submittedAt": "2024-12-03T16:18:22.000Z",
+    "timeSpent": 1102
+  },
+  {
+    "_id": "attempt-005",
+    "quiz": "quiz-002",
+    "student": "student-789",
+    "attemptNumber": 1,
+    "answers": [
+      {
+        "question": "question-004",
+        "answer": "choice-004-a",
+        "isCorrect": false,
+        "pointsEarned": 0
+      },
+      {
+        "question": "question-005",
+        "answer": false,
+        "isCorrect": true,
+        "pointsEarned": 10
+      },
+      {
+        "question": "question-006",
+        "answer": "choice-006-b",
+        "isCorrect": false,
+        "pointsEarned": 0
+      },
+      {
+        "question": "question-007",
+        "answer": "JavaScript Extended Markup Language",
+        "isCorrect": false,
+        "pointsEarned": 0
+      },
+      {
+        "question": "question-008",
+        "answer": true,
+        "isCorrect": true,
+        "pointsEarned": 10
+      }
+    ],
+    "score": 20,
+    "totalPoints": 50,
+    "startedAt": "2024-12-04T11:30:00.000Z",
+    "submittedAt": "2024-12-04T11:52:33.000Z",
+    "timeSpent": 1353
+  }
+]

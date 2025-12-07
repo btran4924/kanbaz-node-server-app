@@ -1,0 +1,240 @@
+[
+  {
+    "_id": "question-001",
+    "quiz": "quiz-001",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Variable Declaration",
+    "points": 10,
+    "question": "<p>Which keyword is used to declare a block-scoped variable in JavaScript?</p>",
+    "order": 0,
+    "choices": [
+      {
+        "id": "choice-001-a",
+        "text": "var",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-001-b",
+        "text": "let",
+        "isCorrect": true
+      },
+      {
+        "id": "choice-001-c",
+        "text": "const",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-001-d",
+        "text": "function",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "_id": "question-002",
+    "quiz": "quiz-001",
+    "type": "TRUE_FALSE",
+    "title": "Array Methods",
+    "points": 10,
+    "question": "<p>The JavaScript array method <code>.push()</code> adds an element to the beginning of an array.</p>",
+    "order": 1,
+    "correctAnswer": false
+  },
+  {
+    "_id": "question-003",
+    "quiz": "quiz-001",
+    "type": "FILL_IN_BLANK",
+    "title": "Function Keyword",
+    "points": 10,
+    "question": "<p>Complete the code: <code>_____ myFunction() { return 42; }</code></p>",
+    "order": 2,
+    "possibleAnswers": ["function", "Function"],
+    "caseSensitive": false
+  },
+  {
+    "_id": "question-004",
+    "quiz": "quiz-002",
+    "type": "MULTIPLE_CHOICE",
+    "title": "React Hooks",
+    "points": 10,
+    "question": "<p>Which React Hook is used to manage component state?</p>",
+    "order": 0,
+    "choices": [
+      {
+        "id": "choice-004-a",
+        "text": "useEffect",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-004-b",
+        "text": "useState",
+        "isCorrect": true
+      },
+      {
+        "id": "choice-004-c",
+        "text": "useContext",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-004-d",
+        "text": "useReducer",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "_id": "question-005",
+    "quiz": "quiz-002",
+    "type": "TRUE_FALSE",
+    "title": "Props Mutability",
+    "points": 10,
+    "question": "<p>In React, props are mutable and can be changed within a component.</p>",
+    "order": 1,
+    "correctAnswer": false
+  },
+  {
+    "_id": "question-006",
+    "quiz": "quiz-002",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Component Lifecycle",
+    "points": 10,
+    "question": "<p>Which Hook runs after every render of a component?</p>",
+    "order": 2,
+    "choices": [
+      {
+        "id": "choice-006-a",
+        "text": "useState",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-006-b",
+        "text": "useMemo",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-006-c",
+        "text": "useEffect",
+        "isCorrect": true
+      },
+      {
+        "id": "choice-006-d",
+        "text": "useCallback",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "_id": "question-007",
+    "quiz": "quiz-002",
+    "type": "FILL_IN_BLANK",
+    "title": "JSX Syntax",
+    "points": 10,
+    "question": "<p>JSX stands for JavaScript _____</p>",
+    "order": 3,
+    "possibleAnswers": ["XML", "xml"],
+    "caseSensitive": false
+  },
+  {
+    "_id": "question-008",
+    "quiz": "quiz-002",
+    "type": "TRUE_FALSE",
+    "title": "Virtual DOM",
+    "points": 10,
+    "question": "<p>React uses a Virtual DOM to improve performance by minimizing direct DOM manipulation.</p>",
+    "order": 4,
+    "correctAnswer": true
+  },
+  {
+    "_id": "question-009",
+    "quiz": "quiz-003",
+    "type": "MULTIPLE_CHOICE",
+    "title": "HTTP Methods",
+    "points": 20,
+    "question": "<p>Which HTTP method is used to update an existing resource?</p>",
+    "order": 0,
+    "choices": [
+      {
+        "id": "choice-009-a",
+        "text": "GET",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-009-b",
+        "text": "POST",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-009-c",
+        "text": "PUT",
+        "isCorrect": true
+      },
+      {
+        "id": "choice-009-d",
+        "text": "DELETE",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "_id": "question-010",
+    "quiz": "quiz-003",
+    "type": "TRUE_FALSE",
+    "title": "REST APIs",
+    "points": 20,
+    "question": "<p>RESTful APIs must always return data in JSON format.</p>",
+    "order": 1,
+    "correctAnswer": false
+  },
+  {
+    "_id": "question-011",
+    "quiz": "quiz-003",
+    "type": "FILL_IN_BLANK",
+    "title": "MongoDB Database",
+    "points": 20,
+    "question": "<p>MongoDB is a _____ database that stores data in JSON-like documents.</p>",
+    "order": 2,
+    "possibleAnswers": ["NoSQL", "nosql", "no-sql", "document"],
+    "caseSensitive": false
+  },
+  {
+    "_id": "question-012",
+    "quiz": "quiz-003",
+    "type": "MULTIPLE_CHOICE",
+    "title": "Express Middleware",
+    "points": 20,
+    "question": "<p>What is the purpose of middleware in Express.js?</p>",
+    "order": 3,
+    "choices": [
+      {
+        "id": "choice-012-a",
+        "text": "To store data in the database",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-012-b",
+        "text": "To process requests before they reach route handlers",
+        "isCorrect": true
+      },
+      {
+        "id": "choice-012-c",
+        "text": "To render HTML templates",
+        "isCorrect": false
+      },
+      {
+        "id": "choice-012-d",
+        "text": "To handle client-side routing",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "_id": "question-013",
+    "quiz": "quiz-003",
+    "type": "TRUE_FALSE",
+    "title": "Session Management",
+    "points": 20,
+    "question": "<p>Sessions are always stored on the client-side in cookies.</p>",
+    "order": 4,
+    "correctAnswer": false
+  }
+]
