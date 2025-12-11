@@ -4,16 +4,19 @@ import { v4 as uuidv4 } from "uuid";
 export default function EnrollmentsDao(db) {
   async function findCoursesForUser(userId) {
     const enrollments = await model.find({ user: userId }).populate("course");
-    return enrollments.map((enrollment) => enrollment.course);
+    return enrollments
+      .map((enrollment) => enrollment.course)
+      .filter((course) => course !== null);
   }
 
   async function findUsersForCourse(courseId) {
     const enrollments = await model.find({ course: courseId }).populate("user");
-    return enrollments.map((enrollment) => enrollment.user);
+    return enrollments
+      .map((enrollment) => enrollment.user)
+      .filter((user) => user !== null);  // Filter out null users
   }
 
   async function enrollUserInCourse(userId, courseId) {
-    // Check if enrollment already exists
     const existingEnrollment = await model.findOne({ user: userId, course: courseId });
     if (existingEnrollment) {
       return existingEnrollment;
