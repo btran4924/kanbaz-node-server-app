@@ -187,6 +187,8 @@ export default function QuizRoutes(app, db) {
     const { quizId } = req.params;
     const currentUser = req.session.currentUser;
 
+    console.log("🚀 Start attempt - User:", currentUser?._id, "Quiz:", quizId);
+
     if (!currentUser) {
       return res.status(401).json({ message: "Must be logged in" });
     }
@@ -199,6 +201,7 @@ export default function QuizRoutes(app, db) {
 
     // Check if student has remaining attempts
     const attemptCount = await dao.countAttempts(quizId, currentUser._id);
+    console.log("📊 Current attempt count:", attemptCount);
 
     if (!quiz.multipleAttempts && attemptCount > 0) {
       return res.status(403).json({ message: "No more attempts allowed" });
@@ -222,6 +225,7 @@ export default function QuizRoutes(app, db) {
       answers: [],
     };
 
+    console.log("✅ Creating attempt:", attempt.attemptNumber);
     const newAttempt = await dao.createAttempt(attempt);
     res.send(newAttempt);
   };
@@ -238,7 +242,8 @@ export default function QuizRoutes(app, db) {
       return res.status(404).json({ message: "Attempt not found" });
     }
 
-    if (attempt.student !== currentUser._id) {
+    // FIXED: Convert both to strings for comparison
+    if (attempt.student.toString() !== currentUser._id.toString()) {
       return res.status(403).json({ message: "Unauthorized" });
     }
 
@@ -247,7 +252,12 @@ export default function QuizRoutes(app, db) {
 
     const gradedAnswers = answers.map((answer) => {
       const question = questions.find((q) => q._id === answer.question);
-      if (!question) return answer;
+      if (!question) return {
+        question: answer.question,
+        answer: answer.answer,
+        isCorrect: false,
+        pointsEarned: 0,
+      };
 
       let isCorrect = false;
 
@@ -264,7 +274,7 @@ export default function QuizRoutes(app, db) {
         case "FILL_IN_BLANK":
           const studentAnswer = question.caseSensitive
             ? answer.answer
-            : answer.answer.toLowerCase();
+            : answer.answer?.toLowerCase();
           isCorrect = question.possibleAnswers.some((possible) => {
             const possibleAnswer = question.caseSensitive
               ? possible
@@ -331,6 +341,29 @@ export default function QuizRoutes(app, db) {
     res.json(attempts);
   };
 
+  // Get specific attempt by ID (NEW)
+  const getAttemptById = async (req, res) => {
+    const { attemptId } = req.params;
+    const currentUser = req.session.currentUser;
+
+    if (!currentUser) {
+      return res.status(401).json({ message: "Must be logged in" });
+    }
+
+    const attempt = await dao.findAttemptById(attemptId);
+
+    if (!attempt) {
+      return res.status(404).json({ message: "Attempt not found" });
+    }
+
+    // Verify ownership - FIXED: Convert to strings
+    if (currentUser.role === "STUDENT" && attempt.student.toString() !== currentUser._id.toString()) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    res.json(attempt);
+  };
+
   // Register routes
   app.get("/api/courses/:courseId/quizzes", findQuizzesForCourse);
   app.post("/api/courses/:courseId/quizzes", createQuizForCourse);
@@ -348,4 +381,5 @@ export default function QuizRoutes(app, db) {
   app.put("/api/attempts/:attemptId", submitAttempt);
   app.get("/api/quizzes/:quizId/attempts/latest", getLatestAttempt);
   app.get("/api/quizzes/:quizId/attempts", getAttempts);
+  app.get("/api/attempts/:attemptId", getAttemptById); // NEW ROUTE
 }
